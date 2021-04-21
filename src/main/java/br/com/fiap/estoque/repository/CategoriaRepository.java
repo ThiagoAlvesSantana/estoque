@@ -3,9 +3,9 @@ package br.com.fiap.estoque.repository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.fiap.estoque.domain.Estoque;
+import br.com.fiap.estoque.domain.Categoria;
 
 @Repository
-public interface EstoqueRepository extends PagingAndSortingRepository<Estoque, Integer> {
+public interface CategoriaRepository extends PagingAndSortingRepository<Categoria, Integer> {
 
 }

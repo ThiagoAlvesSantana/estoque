@@ -20,7 +20,7 @@ public class EstoqueService {
 		return repository.findAll(PageRequest.of(0, 3));
 	}
 
-	public Estoque listEstoquePorEstabelecimento(Long id) {
+	public Estoque listEstoquePorEstabelecimento(Integer id) {
 		Optional<Estoque> opEstoque = repository.findById(id);
 		return opEstoque.get();
 	}
@@ -29,7 +29,7 @@ public class EstoqueService {
 		repository.save(estoque);
 	}
 
-	public void removerItemEstabeleciomento(Long id) {
+	public void removerItemEstabeleciomento(Integer id) {
 		repository.deleteById(id);
 	}
 }

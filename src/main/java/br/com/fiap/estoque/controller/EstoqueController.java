@@ -1,13 +1,16 @@
 package br.com.fiap.estoque.controller;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,19 +31,19 @@ public class EstoqueController {
 	}
 
 	@GetMapping(path = "/{id}")
-	public ResponseEntity<Estoque> listEstoquePorEstabelecimento(Long id) {
+	public ResponseEntity<Estoque> listEstoquePorEstabelecimento(@PathVariable Integer id) {
 		final Estoque estoque = service.listEstoquePorEstabelecimento(id);
 		return ResponseEntity.ok(estoque);
 	}
 
 	@PutMapping()
-	public ResponseEntity<Estoque> adicionarItemEstabelecimento(Estoque estoque) {
+	public ResponseEntity<Estoque> adicionarItemEstabelecimento(@RequestBody Estoque estoque) throws URISyntaxException {
 		service.adicionarItemEstabelecimento(estoque);
-		return ResponseEntity.created(new URI("/estoque/"+estoque.getNome())).build();
+		return ResponseEntity.created(new URI("/estoque/"+estoque.getIdEstoque())).build();
 	}
 
 	@DeleteMapping(path = "{id}")
-	public ResponseEntity<Estoque> removerItemEstabeleciomento(Long id) {
+	public ResponseEntity<Estoque> removerItemEstabeleciomento(@PathVariable Integer id) {
 		service.removerItemEstabeleciomento(id);
 		return ResponseEntity.ok().build();
 
